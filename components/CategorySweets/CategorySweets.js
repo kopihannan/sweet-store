@@ -8,7 +8,7 @@ const CategorySweets = () => {
   return (
     <div className="my-10 w-full mx-auto">
       {isLoading && <h1>Loading.....</h1>}
-      <h1 className="text-center font-bold text-3xl text-[#414141]">
+      <h1 className="text-center font-bold text-3xl text-[#414141] my-10">
         Shop By Category
       </h1>
 

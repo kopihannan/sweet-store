@@ -18,7 +18,7 @@ export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (values, { rejectWithValue }) => {
     try {
-      const token = await axios.post("http://localhost:5000/register", {
+      const token = await axios.post("https://sweet-shop.vercel.app/register", {
         name: values.name,
         email: values.email,
         password: values.password,
@@ -38,7 +38,7 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (values, { rejectWithValue }) => {
     try {
-      const token = await axios.post("http://localhost:5000/login", {
+      const token = await axios.post("https://sweet-shop.vercel.app/login", {
         email: values.email,
         password: values.password,
       });
@@ -57,7 +57,7 @@ export const getUser = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const token = await axios.get(
-        `http://localhost:5000/user/${id}`,
+        `https://sweet-shop.vercel.app/user/${id}`,
         setHeaders()
       );
 

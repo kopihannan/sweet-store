@@ -1,7 +1,10 @@
 import Link from "next/link";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const cart = useSelector((state) => state.cart);
+
   return (
     <div className="">
       <div className="navbar py-5 bg-[#4B8673] text-white shadow-md px-10">
@@ -27,49 +30,68 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <Link className="text-white" href="/">Home</Link>
-              <Link className="text-white" href="/products">Products</Link>
-              <Link className="text-white" href="/contact">Contact</Link>
-              <Link className="text-white" href="/about">About</Link>
+              <Link className="text-white" href="/">
+                Home
+              </Link>
+              <Link className="text-white" href="">
+                Products
+              </Link>
+              <Link className="text-white" href="">
+                Contact
+              </Link>
+              <Link className="text-white" href="">
+                About
+              </Link>
             </ul>
           </div>
-          <Link href='/' className="normal-case font-bold text-xl">Sweet Shop</Link>
+          <Link href="/" className="normal-case font-bold text-xl">
+            Sweet Shop
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <Link className="pl-5 font-medium" href="/">
               Home
             </Link>
-            <Link className="pl-5 font-medium" href="/products">
+            <Link className="pl-5 font-medium" href="">
               Products
             </Link>
-            <Link className="pl-5 font-medium" href="/contact">
+            <Link className="pl-5 font-medium" href="">
               Contact
             </Link>
-            <Link className="pl-5 font-medium" href="/about">
+            <Link className="pl-5 font-medium" href="">
               About
             </Link>
           </ul>
         </div>
         <div className="navbar-end">
-          <p className="mr-5">
-            <Link href="/products/cart">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                />
-              </svg>
-            </Link>
-          </p>
+          <div className="mr-5">
+            <button
+              type="button"
+              className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white rounded-lg"
+            >
+              <Link href="/products/cart">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-7 h-7"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                  />
+                </svg>
+              </Link>
+              <span className="sr-only">Notifications</span>
+              <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">
+                {cart.cartTotalQuantity}
+              </div>
+            </button>
+          </div>
           <Link href="/registation">Login</Link>
         </div>
       </div>

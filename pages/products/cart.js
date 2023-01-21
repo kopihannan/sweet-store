@@ -2,22 +2,12 @@ import Card from "@/components/Card.js/Card";
 import TotalCardAmmount from "@/components/Card.js/TotalCardAmmount";
 import Layout from "@/components/Layout";
 import { getCart } from "@/productApi/cartSlice";
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const cart = () => {
+const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-
-  const [item, setItem] = useState(null);
-
-
-  useEffect(() => {
-    const carts = JSON.parse(localStorage.getItem("cart"));
-    if (carts?.length > 0) {
-      dispatch(getCart(carts));
-    }
-  }, []);
 
   return (
     <Layout>
@@ -37,18 +27,18 @@ const cart = () => {
               <tbody>
                 {cart?.cartItems &&
                   cart?.cartItems?.map((item) => (
-                    <Card key={item._id} item={item} setItem={setItem}></Card>
+                    <Card key={item._id} item={item}></Card>
                   ))}
               </tbody>
             </table>
           </div>
         </div>
         <div className="w-3/12 mb-5">
-          {item && <TotalCardAmmount item={item}></TotalCardAmmount>}
+          <TotalCardAmmount></TotalCardAmmount>
         </div>
       </div>
     </Layout>
   );
 };
 
-export default cart;
+export default Cart;

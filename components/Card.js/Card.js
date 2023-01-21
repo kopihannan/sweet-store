@@ -1,10 +1,28 @@
+import { addToCart, decreaseCart } from "@/productApi/cartSlice";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-const Card = ({ item, setItem }) => {
+const Card = ({ item }) => {
   const { name, price, image, cartQuantity } = item;
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+ 
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("cartItems"));
+    if (data?.length > 0) {
+      dispatch(getCart(data));
+    }
+  }, []);
+
+  const handleMinus = (p) => {
+    dispatch(decreaseCart(p));
+  };
+  const handlePlus = (p) => {
+    dispatch(addToCart(p));
+  };
+
   return (
     <tr>
-      {setItem(item)}
       <th></th>
       <td>
         <div className="flex items-center">
@@ -17,7 +35,49 @@ const Card = ({ item, setItem }) => {
         </div>
       </td>
       <td>{price}</td>
-      <td>{cartQuantity}</td>
+      <td>
+        <div className="flex rounded">
+          <p className="p-2 shadow bg-white  border">
+            <span onClick={() => handleMinus(item)} className="cursor-pointer">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19.5 12h-15"
+                />
+              </svg>
+            </span>
+          </p>
+          <p className="p-2 border bg-white shadow px-6">
+            {cart.cartTotalQuantity}
+          </p>
+          <p className="p-2 border shadow bg-white">
+            <span className="cursor-pointer" onClick={() => handlePlus(item)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 4.5v15m7.5-7.5h-15"
+                />
+              </svg>
+            </span>
+          </p>
+        </div>
+      </td>
       <td>
         <div>
           <svg

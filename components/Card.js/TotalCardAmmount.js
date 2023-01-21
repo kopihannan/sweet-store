@@ -1,14 +1,14 @@
-import React from "react";
+import { getTotal } from "@/productApi/cartSlice";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-const TotalCardAmmount = ({ item }) => {
-  const { price } = item;
+const TotalCardAmmount = () => {
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
-
-  const shipingCost = 60;
-  const subtotal = { price };
-
-  const total = parseFloat((shipingCost + subtotal.price) * 0.15);
-  const mainTotal = parseFloat(total + (shipingCost + subtotal.price));
+  useEffect(() => {
+    dispatch(getTotal());
+  }, [cart, dispatch]);
 
   return (
     <div className="w-full">
@@ -18,20 +18,16 @@ const TotalCardAmmount = ({ item }) => {
       <div className="my-10">
         <div className="flex justify-between">
           <h2 className="font-semibold">Shipping Cost: </h2>
-          <h2 className="font-semibold">$60 </h2>
+          <h2 className="font-semibold">$ 60 </h2>
         </div>
         <div className="flex justify-between">
           <h2 className="font-semibold">Tax:</h2>
           <h2 className="font-semibold">15%</h2>
         </div>
-        <div className="flex justify-between">
-          <h2 className="font-semibold">Subtotal:</h2>
-          <h2 className="font-semibold">${price}</h2>
-        </div>
         <br />
         <div className="flex justify-between">
           <h2 className="font-semibold">Total: </h2>
-          <h2 className="font-semibold">${mainTotal}</h2>
+          <h2 className="font-semibold">${cart.cartTotalAmount}</h2>
         </div>
       </div>
       <div>

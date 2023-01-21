@@ -41,7 +41,20 @@ const Banner = () => {
   };
 
   return (
-    <div className="max-w-[1400px] h-[780px] w-full m-auto py-10 px-4 relative group">
+    <div className="w-full h-[780px] m-auto py-10 px-4 relative group">
+      <div className="absolute text-white text-center w-full h-full m-auto top-1/3">
+        <h1 className="text-center text-6xl font-bold text-white mb-6">
+          BEST SWEETS STORE
+        </h1>
+        <p className="font-medium text-sm">
+          Sweets with various types and names are found in Bangladesh. Most of
+          the districts <br /> of Bangladesh have individual sweets with an
+          individual name.
+        </p>
+        <button className="bg-gradient-to-r from-[#FF6D28] to-[#EA047E] rounded-md px-7 py-3 mt-5 hover:from-[#d34300] hover:to-[#af005d]">
+          Shop Now
+        </button>
+      </div>
       <div
         style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
         className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
@@ -54,18 +67,7 @@ const Banner = () => {
       <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
         <BsChevronCompactRight onClick={nextSlide} size={30} />
       </div>
-      <div className="absolute text-white text-center w-full h-full m-auto top-1/3">
-        <div>
-          <h1 className="text-center text-5xl font-bold text-white mb-6">
-            BEST SWEETS SHOP
-          </h1>
-          <p className="font-medium">
-            Sweets with various types and names are found in Bangladesh. Most of
-            the districts <br /> of Bangladesh have individual sweets with an
-            individual name.
-          </p>
-        </div>
-      </div>
+
       <div className="flex top-4 justify-center py-2">
         {slides.map((slide, slideIndex) => (
           <div

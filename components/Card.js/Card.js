@@ -9,6 +9,7 @@ const Card = ({ item }) => {
 
   const handleMinus = (id) => {
     dispatch(decreaseCart(id));
+    console.log("_+++id",id);
   };
   const handlePlus = (id) => {
     dispatch(addToCart(id));

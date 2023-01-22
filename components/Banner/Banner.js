@@ -32,7 +32,7 @@ const Banner = () => {
 
   return (
     <div className="w-full h-[780px] m-auto py-10 px-4 relative group">
-      <div className="absolute text-white text-center w-full h-full m-auto top-1/3">
+      <div className="absolute text-white text-center h-full m-auto top-1/3">
         <h1 className="text-center text-6xl font-bold text-white mb-6">
           BEST SWEETS STORE
         </h1>

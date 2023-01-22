@@ -12,7 +12,7 @@ const CategorySweets = () => {
         Shop By Category
       </h1>
 
-      <div className="grid grid-cols-3 justify-center items-center mx-auto">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 justify-center items-center mx-auto">
         {
           data && data.map((product)=> <CategorySweetsCard product={product} key={product._id}></CategorySweetsCard>)
         }

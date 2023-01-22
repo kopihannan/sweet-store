@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 const products = () => {
   const router = useRouter();
   const { data, error, isLoading } = useGetProductByIdQuery(router.query._id);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [active, setActive] = useState(0);
   const [count, setCount] = useState(1);
@@ -25,7 +25,10 @@ const products = () => {
   };
 
   const handleAddCart = (data)=>{
-    dispatch(addToCart(data))
+    const datas =  dispatch(addToCart(data))
+    if(datas){
+      router.push('/products/cart');
+    }
   }
 
   return (
@@ -39,7 +42,7 @@ const products = () => {
                 <div className="w-1/2">
                   <div className="w-10/12 mx-auto">
                     <img
-                      className="rounded h-[300px] w-[400px] mx-auto"
+                      className="rounded h-[300px] lg:w-[400px] md:w-[400px] w-full mx-auto"
                       src={data.image[active]}
                       alt=""
                     />
@@ -79,7 +82,7 @@ const products = () => {
                         Price: ${data.price}
                       </p>
                       <div className="lg:flex md:flex flex-wrap items-center justify-between">
-                        <div className="flex rounded">
+                        {/* <div className="flex rounded">
                           <p className="p-3 shadow bg-white  border">
                             <span
                               onClick={handleMinus}
@@ -125,7 +128,7 @@ const products = () => {
                               </svg>
                             </span>
                           </p>
-                        </div>
+                        </div> */}
                         <div className="py-3">
                           <button onClick={()=> handleAddCart(data)} className="bg-[#54B435] py-3 w-32 shadow-lg rounded-3xl text-white font-medium hover:bg-[#3c8f20] lg:mr-4 md:mr-4 mr-0 lg:my-0 md:my-0 my-2">
                             Add to Cart

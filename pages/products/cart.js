@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  console.log(cart);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("cartItems"));
@@ -18,9 +19,9 @@ const Cart = () => {
 
   return (
     <Layout>
-      <div className="w-full min-h-screen flex justify-center text-[#555555]">
-        <div className="w-9/12">
-          <div className="">
+      <div className="w-full items-start hero-content flex-col lg:flex-row justify-center text-[#555555]">
+        <div className="lg:w-9/12 md:w-7/12 w-full">
+          <div className="overflow-x-auto w-full">
             <table className="table w-full">
               <thead>
                 <tr>
@@ -40,7 +41,7 @@ const Cart = () => {
             </table>
           </div>
         </div>
-        <div className="w-3/12 mb-5">
+        <div className="lg:w-3/12 md:w-5/12 w-full mb-5">
           <TotalCardAmmount></TotalCardAmmount>
         </div>
       </div>

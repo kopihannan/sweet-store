@@ -9,7 +9,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="">
+    <div className="w-full">
       <div className="navbar py-5 bg-[#4B8673] text-white shadow-md px-10">
         <div className="navbar-start">
           <div className="dropdown">

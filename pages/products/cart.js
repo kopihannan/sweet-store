@@ -9,6 +9,13 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("cartItems"));
+    if (data?.length > 0) {
+      dispatch(getCart(data));
+    }
+  }, []);
+
   return (
     <Layout>
       <div className="w-full min-h-screen flex justify-center text-[#555555]">

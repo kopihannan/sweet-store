@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 
+
+
 const initialState = {
   cartItems: [],
   cartTotalQuantity: 0,
@@ -8,7 +10,7 @@ const initialState = {
 };
 
 const cartSlice = createSlice({
-  name: "cart",
+  name: "cartItems",
   initialState,
   reducers: {
     addToCart(state, action) {

@@ -7,12 +7,7 @@ const Card = ({ item }) => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
  
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("cartItems"));
-    if (data?.length > 0) {
-      dispatch(getCart(data));
-    }
-  }, []);
+
 
   const handleMinus = (p) => {
     dispatch(decreaseCart(p));

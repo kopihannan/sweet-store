@@ -1,16 +1,19 @@
 import Layout from "@/components/Layout";
 import { getUser, loginUser } from "@/productApi/authSlice";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
 const index = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  const router = useRouter()
   console.log(auth);
   
   useEffect(()=>{
-    const data = JSON.parse(localStorage.getItem("token"));
+    const data = localStorage.getItem("token");
     if (data?.length > 0) {
       dispatch(getUser(data));
     }
@@ -22,7 +25,12 @@ const index = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    dispatch(loginUser({ email, password }));
+   const login = dispatch(loginUser({ email, password }));
+   if(login){
+    router.push('/')
+    toast.success("login success")
+   }
+
   };
 
   return (

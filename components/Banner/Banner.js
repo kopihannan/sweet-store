@@ -32,18 +32,20 @@ const Banner = () => {
 
   return (
     <div className="w-full h-[780px] m-auto py-10 px-4 relative group">
-      <div className="absolute text-white text-center h-full m-auto top-1/3">
-        <h1 className="text-center text-6xl font-bold text-white mb-6">
-          BEST SWEETS STORE
-        </h1>
-        <p className="font-medium text-sm">
-          Sweets with various types and names are found in Bangladesh. Most of
-          the districts <br /> of Bangladesh have individual sweets with an
-          individual name.
-        </p>
-        <button className="bg-gradient-to-r from-[#FF6D28] to-[#EA047E] rounded-md px-7 py-3 mt-5 hover:from-[#d34300] hover:to-[#af005d]">
-          Shop Now
-        </button>
+      <div className="absolute text-white text-center top-1/3 left-1/2 -translate-x-2/4">
+        <div className="w-full left-0 right-0 ">
+          <h1 className="text-center text-6xl font-bold text-white mb-6">
+            BEST SWEETS STORE
+          </h1>
+          <p className="font-medium text-sm">
+            Sweets with various types and names are found in Bangladesh. Most of
+            the districts <br /> of Bangladesh have individual sweets with an
+            individual name.
+          </p>
+          <button className="bg-gradient-to-r from-[#FF6D28] to-[#EA047E] rounded-md px-7 py-3 mt-5 hover:from-[#d34300] hover:to-[#af005d]">
+            Shop Now
+          </button>
+        </div>
       </div>
       <div
         style={{ backgroundImage: `url(${slides[currentIndex].url})` }}

@@ -1,12 +1,29 @@
+import { getAuthToken, logoutUser } from "@/productApi/authSlice";
+import { getTotal } from "@/productApi/cartSlice";
 import Link from "next/link";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
-  console.log(auth);
+  console.log(cart);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    const data = localStorage.getItem("token");
+    if (data?.length > 0) {
+      dispatch(getAuthToken(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    const datas = JSON.parse(localStorage.getItem("cartItems"));
+    if (datas?.length > 0) {
+      dispatch(getTotal(datas));
+      console.log(datas);
+    }
+  }, []);
 
   return (
     <div className="w-full">
@@ -95,7 +112,19 @@ const Navbar = () => {
               </div>
             </button>
           </div>
-          <Link href="/registation">Login</Link>
+          {auth.token ? (
+            <button
+              onClick={() => {
+                dispatch(logoutUser(null));
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <div>
+              <Link href="/login">Login</Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

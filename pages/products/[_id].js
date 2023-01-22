@@ -4,6 +4,7 @@ import { useGetProductByIdQuery } from "@/productApi/productApi";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { RiseLoader } from "react-spinners";
 
 const products = () => {
   const router = useRouter();
@@ -12,6 +13,7 @@ const products = () => {
 
   const [active, setActive] = useState(0);
   const [count, setCount] = useState(1);
+
   const handleMinus = () => {
     if (count !== 1) {
       setCount(count - 1);
@@ -24,17 +26,17 @@ const products = () => {
     setCount(count + 1);
   };
 
-  const handleAddCart = (data)=>{
-    const datas =  dispatch(addToCart(data))
-    if(datas){
-      router.push('/products/cart');
+  const handleAddCart = (data) => {
+    const datas = dispatch(addToCart(data));
+    if (datas) {
+      router.push("/products/cart");
     }
-  }
+  };
 
   return (
     <Layout>
       <div className="bg-[#f9e8ff]">
-        {isLoading && <h2>Loading...</h2>}
+        {isLoading && <h2 className="text-center"><RiseLoader color="#36d7b7" /></h2>}
         {data && (
           <div>
             <div className="hero min-h-screen">
@@ -130,7 +132,10 @@ const products = () => {
                           </p>
                         </div> */}
                         <div className="py-3">
-                          <button onClick={()=> handleAddCart(data)} className="bg-[#54B435] py-3 w-32 shadow-lg rounded-3xl text-white font-medium hover:bg-[#3c8f20] lg:mr-4 md:mr-4 mr-0 lg:my-0 md:my-0 my-2">
+                          <button
+                            onClick={() => handleAddCart(data)}
+                            className="bg-[#54B435] py-3 w-32 shadow-lg rounded-3xl text-white font-medium hover:bg-[#3c8f20] lg:mr-4 md:mr-4 mr-0 lg:my-0 md:my-0 my-2"
+                          >
                             Add to Cart
                           </button>
                           <button className="bg-[#FF8B13] py-3 w-32 shadow-lg rounded-3xl text-white font-medium hover:bg-[#df780a]">

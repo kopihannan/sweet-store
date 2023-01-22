@@ -1,7 +1,7 @@
 import { getAuthToken, logoutUser } from "@/productApi/authSlice";
 import { getTotal } from "@/productApi/cartSlice";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
@@ -9,6 +9,9 @@ const Navbar = () => {
   const auth = useSelector((state) => state.auth);
   console.log(cart);
   const dispatch = useDispatch();
+
+  const [refress, setRefress] = useState();
+
 
   useEffect(() => {
     const data = localStorage.getItem("token");
@@ -20,8 +23,8 @@ const Navbar = () => {
   useEffect(() => {
     const datas = JSON.parse(localStorage.getItem("cartItems"));
     if (datas?.length > 0) {
-      dispatch(getTotal(datas));
-      console.log(datas);
+      const ref = dispatch(getTotal(datas));
+       setRefress(ref.payload.length);
     }
   }, []);
 
@@ -107,9 +110,11 @@ const Navbar = () => {
                 </svg>
               </Link>
               <span className="sr-only">Notifications</span>
-              <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">
-                {cart.cartTotalQuantity}
-              </div>
+              {
+                refress? <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">
+                {refress}
+              </div> : ""
+              }
             </button>
           </div>
           {auth.token ? (

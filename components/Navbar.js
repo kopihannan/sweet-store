@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
+  const auth = useSelector((state) => state.auth);
+  console.log(auth);
+
 
   return (
     <div className="">

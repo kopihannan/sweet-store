@@ -1,4 +1,4 @@
-import { addToCart, decreaseCart } from "@/productApi/cartSlice";
+import { addToCart, decreaseCart, removeFromCart } from "@/productApi/cartSlice";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -6,14 +6,16 @@ const Card = ({ item }) => {
   const { name, price, image, cartQuantity } = item;
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
- 
 
-
-  const handleMinus = (p) => {
-    dispatch(decreaseCart(p));
+  const handleMinus = (id) => {
+    dispatch(decreaseCart(id));
   };
-  const handlePlus = (p) => {
-    dispatch(addToCart(p));
+  const handlePlus = (id) => {
+    dispatch(addToCart(id));
+  };
+
+  const handleDelete = (id) => {
+    dispatch(removeFromCart(id));
   };
 
   return (
@@ -76,6 +78,7 @@ const Card = ({ item }) => {
       <td>
         <div>
           <svg
+            onClick={() => handleDelete(item)}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"

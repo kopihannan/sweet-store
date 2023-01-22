@@ -58,12 +58,7 @@ const cartSlice = createSlice({
           const nextCartItems = state.cartItems.filter(
             (item) => item.id !== cartItem.id
           );
-
           state.cartItems = nextCartItems;
-
-          toast.error("Product removed from cart", {
-            position: "bottom-left",
-          });
         }
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
         return state;

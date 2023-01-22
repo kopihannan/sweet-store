@@ -1,13 +1,20 @@
 import Layout from "@/components/Layout";
-import { loginUser } from "@/productApi/authSlice";
+import { getUser, loginUser } from "@/productApi/authSlice";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const index = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   console.log(auth);
+  
+  useEffect(()=>{
+    const data = JSON.parse(localStorage.getItem("token"));
+    if (data?.length > 0) {
+      dispatch(getUser(data));
+    }
+  },[])
 
   const handleLogin = (e) => {
     e.preventDefault();
